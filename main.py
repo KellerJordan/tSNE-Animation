@@ -1,4 +1,5 @@
 import os
+import sys
 import pickle
 
 from sklearn.manifold import TSNE
@@ -26,4 +27,7 @@ def main(dataset):
     savegif(Y_seq, labels, limits, fig_name, fig_path)
 
 if __name__ == '__main__':
-    main('mnist70k')
+    dataset = 'mnist70k'
+    if len(sys.argv) > 1:
+        dataset = sys.argv[1]
+    main(dataset)
