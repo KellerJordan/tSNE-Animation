@@ -6,8 +6,8 @@ from sklearn.manifold import TSNE
 from tsne_hack import extract_sequence
 from visualize import savegif
 
-def main():
-    data_path = './data/mnist70k.pkl' 
+def main(dataset):
+    data_path = './data/%s.pkl' % dataset 
     with open(data_path, 'rb') as f:
         X, labels = pickle.load(f)
 
@@ -18,7 +18,12 @@ def main():
     if not os.path.exists('figures'):
         os.mkdir('figures')
 
-    savegif(Y_seq, labels, 'mnist70k-tsne', './figures/mnist70k-tsne.gif')
+    lo = Y_seq.min(axis=0).min(axis=0).max()
+    hi = Y_seq.max(axis=0).max(axis=0).min()
+    limits = ([lo, hi], [lo, hi])
+    fig_name = '%s-tsne' % dataset
+    fig_path = './figures/%s.gif' % fig_name
+    savegif(Y_seq, labels, limits, fig_name, fig_path)
 
 if __name__ == '__main__':
-    main()
+    main('mnist70k')

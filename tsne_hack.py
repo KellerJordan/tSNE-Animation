@@ -1,4 +1,4 @@
-import time
+from time import time
 
 import numpy as np
 from sklearn import manifold
@@ -32,7 +32,7 @@ def extract_sequence(tsne, X):
             Y_seq.append(p.copy().reshape(-1, 2))
 
             error, grad = objective(p, *args, **kwargs)
-            grad_norm = linalg.norm(grad)
+            grad_norm = np.linalg.norm(grad)
 
             inc = update * grad < 0.0
             dec = np.invert(inc)
@@ -78,5 +78,5 @@ def extract_sequence(tsne, X):
     # return to default version
     manifold.t_sne._gradient_descent = sklearn_grad
     
-    return Y_seq
+    return np.array(Y_seq)
   

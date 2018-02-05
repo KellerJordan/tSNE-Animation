@@ -16,7 +16,7 @@ def init_plot():
     patches = [mpatches.Patch(color=cmap.colors[i], label=str(i)) for i in range(10)]
     return fig, ax, patches
 
-def savegif(Y_seq, labels, fig_name, path):
+def savegif(Y_seq, labels, limits, fig_name, path):
     fig, ax, patches = init_plot()
 
     def init():
@@ -26,8 +26,8 @@ def savegif(Y_seq, labels, fig_name, path):
         if (i+1) % 50 == 0:
             print('[%d / %d] Animating frames' % (i+1, len(Y_seq)))
         ax.clear()
-        ax.set_xlim([-10, 10])
-        ax.set_ylim([-10, 10])
+        ax.set_xlim(limits[0])
+        ax.set_ylim(limits[1])
         plt.legend(handles=patches, loc='upper right')
         ax.scatter(Y_seq[i][:, 0], Y_seq[i][:, 1], 1, labels)
         ax.set_title('%s (epoch %d)' % (fig_name, i))
