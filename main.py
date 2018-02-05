@@ -1,3 +1,4 @@
+import os
 import pickle
 
 from sklearn.manifold import TSNE
@@ -14,7 +15,10 @@ def main():
     with open('mnist.pkl', 'wb') as f:
         pickle.dump(Y_seq, f)
 
-    visualize.savegif(Y_seq, labels, 'mnist10k-tsne', './mnist10k-tsne.gif')
+    if not os.path.exists('figures'):
+        os.mkdir('figures')
+
+    savegif(Y_seq, labels, 'mnist70k-tsne', './figures/mnist70k-tsne.gif')
 
 if __name__ == '__main__':
     main()
