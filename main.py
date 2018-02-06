@@ -24,7 +24,7 @@ def main(dataset):
     limits = ([lo, hi], [lo, hi])
     fig_name = '%s-tsne' % dataset
     fig_path = './figures/%s.gif' % fig_name
-    savegif(Y_seq, labels, limits, fig_name, fig_path)
+    savegif(Y_seq, labels, fig_name, fig_path, limits=limits)
 
 if __name__ == '__main__':
     dataset = 'mnist70k'
