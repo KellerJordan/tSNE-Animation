@@ -16,7 +16,7 @@ def main(args):
     tsne = TSNE(n_iter=args.early_iters, verbose=True)
     tsne._EXPLORATION_N_ITER = args.early_iters
     Y_seq = extract_sequence(tsne, X)
-    with open('mnist.pkl', 'wb') as f:
+    with open('results/res.pkl', 'wb') as f:
         pickle.dump(Y_seq, f)
 
     if not os.path.exists('figures'):
